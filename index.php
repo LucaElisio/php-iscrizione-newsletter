@@ -2,20 +2,13 @@
 
 var_dump($_POST);
 
+include __DIR__ . "/partials/functions.php";
+
 if(isset($_POST["email"])) {
-    // echo "Hai inserito l'email";
-
-    // Controllo email
-    if(str_contains($_POST["email"], "@") && str_contains($_POST["email"], "." )){
-        echo "Email scritta bene";
-    } else {
-        echo "Email scritta male";
-    }
-
+    check_email($_POST["email"]);
 } else {
-    echo "Email non inserita";
+    echo "Inserire email!";
 }
-
 
 ?>
 
