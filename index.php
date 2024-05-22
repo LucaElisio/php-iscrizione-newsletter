@@ -1,14 +1,20 @@
-<?php 
+<?php
 
 var_dump($_POST);
 
+
+
 include __DIR__ . "/partials/functions.php";
 
-if(isset($_POST["email"])) {
-    check_email($_POST["email"]);
-} else {
-    echo "Inserire email!";
+
+if (isset($_POST["email"])) {
+    $error = check_email($_POST["email"]);
 }
+
+
+
+
+// var_dump(check_email($_POST["email"], $error));
 
 ?>
 
@@ -28,6 +34,21 @@ if(isset($_POST["email"])) {
 
 <body>
     <div class="container mt-5">
+
+        <!-- Alert -->
+        <div>
+            <?php if (!isset($_POST["email"])) { ?>
+                <div class="alert alert-warning">Inserire email!</div>
+            <?php } ?>
+
+            <?php if (isset($_POST["email"]) && !$error) { ?>
+                <div class="alert alert-success">Email inserita correttamente</div>
+            <?php } elseif (isset($_POST["email"]) && $error) { ?>
+                <div class="alert alert-danger">Email inserita male</div>
+            <?php } ?>
+        </div>
+
+        <!-- Form -->
         <form action="index.php" method="post">
             <div class="mb-3">
                 <label for="i" class="form-label">Email address</label>
@@ -36,6 +57,7 @@ if(isset($_POST["email"])) {
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        
     </div>
 </body>
 

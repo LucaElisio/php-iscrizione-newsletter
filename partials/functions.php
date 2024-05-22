@@ -2,9 +2,9 @@
 
 function check_email($email){
     // Controllo email
-    if (str_contains($email, "@") && str_contains($email, ".")) {
-        echo "Email scritta bene";
+    if (!str_contains($email, "@") && !str_contains($email, ".")) {
+        return true; //errore c'è
     } else {
-        echo "Email scritta male";
+        return false; //errore non c'è
     }
 }
